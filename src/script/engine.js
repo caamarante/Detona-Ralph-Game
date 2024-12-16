@@ -11,7 +11,7 @@ const state = {
         hitPosition: 0,
         result: 0,
         currentTime: 60,
-        life: 3,
+        life: 5,
     },
     actions: {
         timerId: setInterval(randomSquare, 1000),
