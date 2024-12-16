@@ -7,3 +7,19 @@ const state = {
     },
     values: {},
 };
+
+function randomSquare() {
+    state.view.squares.forEach((square)=>{
+        square.classList.remove("enemy");
+    })
+}
+
+function addListenerHitBox() {
+    state.view.squares.forEach((square)=> {});
+}
+
+function init() {
+
+}
+
+init();
