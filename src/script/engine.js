@@ -11,7 +11,9 @@ const state = {
 function randomSquare() {
     state.view.squares.forEach((square)=>{
         square.classList.remove("enemy");
-    })
+    });
+
+    let randomNumber = Math.floor(Math.random() * 9);
 }
 
 function addListenerHitBox() {
