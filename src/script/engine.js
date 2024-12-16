@@ -6,22 +6,32 @@ const state = {
         score: document.querySelector("#score"),
     },
     values: {
-        timerId: setInterval(randomSquare, 1000),
-        countDownTimerId: setInterval(countDown, 1000),
         gameVelocity: 1000,
         hitPosition: 0,
         result: 0,
         currentTime: 60,
     },
+    actions: {
+        timerId: setInterval(randomSquare, 1000),
+        countDownTimerId: setInterval(countDown, 1000),
+    }
 };
 
 function countDown(){
     state.values.currentTime--;
     state.view.timeLeft.textContent = state.values.currentTime;
 
-    if(state.values.currentTime < 0) {
+    if(state.values.currentTime <= 0) {
+        clearInterval(state.actions.countDownTimerId);
+        clearInterval(state.actions.timerId);
         alert("Game Over! Sua pontuação foi: " + state.values.result);
     }
+}
+
+function playSound() {
+    let audio = new Audio("./src/audios/hit.m4a");
+    audio.volume = 0.2;
+    audio.play();
 }
 
 function randomSquare() {
@@ -42,6 +52,7 @@ function addListenerHitBox() {
                 state.values.result++;
                 state.view.score.textContent = state.values.result;
                 randomSquare();
+                playSound();
             }
         })
     });
