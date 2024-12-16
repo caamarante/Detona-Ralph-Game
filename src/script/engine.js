@@ -4,12 +4,14 @@ const state = {
         enemy: document.querySelector(".enemy"),
         timeLeft: document.querySelector("#time-left"),
         score: document.querySelector("#score"),
+        lifes: document.querySelector("#lifes"),
     },
     values: {
         gameVelocity: 1000,
         hitPosition: 0,
         result: 0,
         currentTime: 60,
+        life: 3,
     },
     actions: {
         timerId: setInterval(randomSquare, 1000),
@@ -53,6 +55,15 @@ function addListenerHitBox() {
                 state.view.score.textContent = state.values.result;
                 randomSquare();
                 playSound();
+            } else {
+                state.values.life--;
+                state.view.lifes.textContent = state.values.life;
+                if (state.values.life <= 0) {
+                    state.view.timeLeft.textContent = 0;
+                    clearInterval(state.actions.countDownTimerId);
+                    clearInterval(state.actions.timerId);
+                    alert("Game Over! Sua pontuação foi: " + state.values.result);
+                }
             }
         })
     });
