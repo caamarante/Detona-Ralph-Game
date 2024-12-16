@@ -14,6 +14,8 @@ function randomSquare() {
     });
 
     let randomNumber = Math.floor(Math.random() * 9);
+    let randomSquare = state.view.squares[randomNumber];
+    randomSquare.classList("enemy");
 }
 
 function addListenerHitBox() {
@@ -21,7 +23,7 @@ function addListenerHitBox() {
 }
 
 function init() {
-
+    randomSquare();
 }
 
 init();
